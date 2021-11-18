@@ -838,7 +838,7 @@ class Server
         }
 
         //remove regex arguments
-        for ($i=0; $i<count($regexArguments); $i++) {
+        for ($i=0; $i<count(array($regexArguments)); $i++) {
             array_shift($params);
         }
 
