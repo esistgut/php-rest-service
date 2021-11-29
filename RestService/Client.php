@@ -2,6 +2,8 @@
 
 namespace RestService;
 
+use Illuminate\Http\Request;
+
 class Client
 {
     /**
@@ -98,8 +100,10 @@ class Client
     public function __construct($pServerController)
     {
         $this->controller = $pServerController;
-        if (isset($_SERVER['PATH_INFO']))
-            $this->setUrl($_SERVER['PATH_INFO']);
+        $request = Request::capture();
+        $pathInfo = $request->getPathInfo();
+        if (isset($pathInfo))
+            $this->setUrl($request->getPathInfo());
 
         $this->setupFormats();
     }
