@@ -220,6 +220,7 @@ class Client
      */
     public function setContentLength($pMessage)
     {
+        $pMessage = $pMessage ?? "";
         if (php_sapi_name() !== 'cli')
             header('Content-Length: ' . strlen($pMessage));
     }
@@ -256,6 +257,7 @@ class Client
 
         $result = '';
         $pos = 0;
+        $json = $json ?? "";
         $strLen = strlen($json);
         $indentStr = '    ';
         $newLine = "\n";
@@ -422,6 +424,7 @@ class Client
             if (isset($this->outputFormats[$matches[1]])) {
                 $this->outputFormat = $matches[1];
                 $url = $this->getUrl();
+                $this->outputFormat = $this->outputFormat ?? "";
                 $this->setUrl(substr($url, 0, (strlen($this->outputFormat) * -1) - 1));
             }
         }
