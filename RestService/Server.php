@@ -672,6 +672,7 @@ class Server
      */
     public function normalizeUrl(&$pUrl)
     {
+        $pUrl = $pUrl ?? "";
         if ('/' === $pUrl) return;
         if (substr($pUrl, -1) == '/') $pUrl = substr($pUrl, 0, -1);
         if (substr($pUrl, 0, 1) != '/') $pUrl = '/' . $pUrl;
@@ -693,6 +694,7 @@ class Server
      */
     public function camelCase2Dashes($pValue)
     {
+        $pValue = $pValue?? "";
         return strtolower(preg_replace('/([a-z])([A-Z])/', '$1-$2', $pValue));
     }
 
@@ -748,6 +750,7 @@ class Server
      */
     public function simulateCall($pUri, $pMethod = 'get')
     {
+        $pUri = $pUri ?? "";
         if (($idx = strpos($pUri, '?')) !== false) {
             parse_str(substr($pUri, $idx+1), $_GET);
             $pUri = substr($pUri, 0, $idx);
