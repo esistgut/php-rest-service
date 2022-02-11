@@ -138,6 +138,7 @@ class Server
      */
     public function __construct($pTriggerUrl, $pControllerClass = null, $pParentController = null)
     {
+        $pTriggerUrl = $pTriggerUrl ?? "";
         $this->normalizeUrl($pTriggerUrl);
 
         if ($pParentController) {
