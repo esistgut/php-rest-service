@@ -138,7 +138,6 @@ class Server
      */
     public function __construct($pTriggerUrl, $pControllerClass = null, $pParentController = null)
     {
-        $pTriggerUrl = $pTriggerUrl ?? "";
         $this->normalizeUrl($pTriggerUrl);
 
         if ($pParentController) {
@@ -673,7 +672,6 @@ class Server
      */
     public function normalizeUrl(&$pUrl)
     {
-        $pUrl = $pUrl ?? "";
         if ('/' === $pUrl) return;
         if (substr($pUrl, -1) == '/') $pUrl = substr($pUrl, 0, -1);
         if (substr($pUrl, 0, 1) != '/') $pUrl = '/' . $pUrl;
@@ -695,7 +693,6 @@ class Server
      */
     public function camelCase2Dashes($pValue)
     {
-        $pValue = $pValue?? "";
         return strtolower(preg_replace('/([a-z])([A-Z])/', '$1-$2', $pValue));
     }
 
@@ -751,7 +748,6 @@ class Server
      */
     public function simulateCall($pUri, $pMethod = 'get')
     {
-        $pUri = $pUri ?? "";
         if (($idx = strpos($pUri, '?')) !== false) {
             parse_str(substr($pUri, $idx+1), $_GET);
             $pUri = substr($pUri, 0, $idx);
@@ -922,7 +918,7 @@ class Server
         if (!$pOnlyRoutes) {
             $definition['parameters'] = array(
                 '_method' => array('description' => 'Can be used as HTTP METHOD if the client does not support HTTP methods.', 'type' => 'string',
-                                   'values' => 'GET, POST, PUT, DELETE, HEAD, OPTIONS, PATCH'),
+                    'values' => 'GET, POST, PUT, DELETE, HEAD, OPTIONS, PATCH'),
                 '_suppress_status_code' => array('description' => 'Suppress the HTTP status code.', 'type' => 'boolean', 'values' => '1, 0'),
                 '_format' => array('description' => 'Format of generated data. Can be added as suffix .json .xml', 'type' => 'string', 'values' => 'json, xml'),
             );
